@@ -1,0 +1,52 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password-Reset</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="div-img">
+    <img src="/assets/img/sign-up.jpg" alt="Nature" style="width: 100% ;height: 100%;">
+    <div class="text-block">
+      <form onsubmit="register();return false;" id="signupForm" method="POST">
+        <h1 class="text-center heading">Register</h1>
+        <div class="form-group ">
+          <label for="name">User name</label>
+          <input class="form-control" type="text" id="name">
+        </div>
+        <div class="form-group">
+          <label for="mail">Email address</label>
+          <input type="email" class="form-control" id="mail" aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password">
+        </div>
+        <div class="form-group ">
+          <label for="number">Phone number</label>
+          <input class="form-control" type="text" id="number">
+        </div>
+        <div class="form-group form-check">
+         <h6>Already User <a href="/assets/login/login.html">Login?</a> </h6>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Sign-up</button>
+        </div>
+       
+      </form>
+      
+    </div>
+  </div>
+
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>

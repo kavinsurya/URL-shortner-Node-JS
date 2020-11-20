@@ -1,0 +1,36 @@
+.div {
+    margin: 30px auto;
+    padding: 30px 20px;
+  }
+  .form-group {
+    margin: 10px auto;
+    padding: 10px;
+  }
+  
+  .div-img {
+    position: relative;
+    font-family: Arial;
+  }
+  
+  .text-block {
+    position: absolute;
+    top: 50px;
+    left: 30%;
+    margin: 30px auto;
+    background-color: black;
+    opacity: 0.85;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    min-width: 40%;
+  }
+  
+  .btn {
+    margin: 10px;
+   
+  }
+
+  .heading{
+  margin: 10px;
+  }
+  

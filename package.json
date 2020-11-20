@@ -1,0 +1,30 @@
+{
+  "name": "password-reset-node-js",
+  "version": "1.0.0",
+  "description": "Password reset using node js",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kavinsurya/Password-Reset-Node-JS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kavinsurya/Password-Reset-Node-JS/issues"
+  },
+  "homepage": "https://github.com/kavinsurya/Password-Reset-Node-JS#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "crypto-random-string": "^3.3.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.3",
+    "node-url-shortener": "^1.1.11",
+    "nodemailer": "^6.4.16"
+  }
+}
