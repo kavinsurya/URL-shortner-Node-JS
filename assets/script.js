@@ -15,7 +15,11 @@ async function register() {
     }).then(res => {
         if (res.status == 200) {
             alert("Registration successful");
+            setTimeout(() => {
+                sendLink(data)
+            }, 1000);
             document.getElementById('signupForm').reset();
+
 
 
         } else {
@@ -25,9 +29,7 @@ async function register() {
     })
         .catch(err => console.log(err))
 
-    setTimeout(() => {
-        sendLink(data)
-    }, 1000);
+   
 }
 
 

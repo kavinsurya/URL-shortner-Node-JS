@@ -12,7 +12,7 @@ async function login() {
     }).then(res => {
         if (res.status == 200) {
             alert("Logged in Successfully");
-            window.location.href = "/assets/welcome/welcome.html";
+            window.location.href = "/assets/welcome/urlshortner.html";
 
         } else if (res.status == 400 || res.status == 401) {
             alert("Invalid Credentials");

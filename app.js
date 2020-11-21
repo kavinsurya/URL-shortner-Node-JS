@@ -9,21 +9,19 @@ var shortUrl = require('node-url-shortener');
 const mongodb = require('mongodb');
 const client = mongodb.MongoClient;
 
-
+//middlewares
 const app = express()
 app.use(cors());
 app.use(bodyParser.json())
 
 
-
-const url = "mongodb://localhost:27017";
+//DB url 
+const url = process.env.url;
 let urlshortner = [];
 
 
-// var urlshortner ="";
 
-
-
+//APi to view users
 app.get('/users', async function (req, res) {
     try {
         let connection = await client.connect(url);
@@ -38,6 +36,7 @@ app.get('/users', async function (req, res) {
 })
 
 
+//Api to register new user
 app.post('/register', async (req, res) => {
     try {
         let connection = await client.connect(url);
@@ -63,6 +62,8 @@ app.post('/register', async (req, res) => {
 
 })
 
+
+//Api to Login the user
 app.post('/login', async (req, res) => {
     try {
         let connection = await client.connect(url);
@@ -91,13 +92,13 @@ app.post('/login', async (req, res) => {
 })
 
 
-
+//Api to send the reset code via mail 
 app.post('/sendMail', async (req, res) => {
     try {
         let connection = await client.connect(url);
         let db = connection.db("url_shortner");
         let checkvalidity = await db.collection("users").findOne({ email: req.body.email });
-        console.log(checkvalidity);
+      
         if (checkvalidity) {
             let data = await db.collection("reset").insertOne(req.body);
             let transporter = nodemailer.createTransport({
@@ -115,10 +116,10 @@ app.post('/sendMail', async (req, res) => {
                 html: `<div>
                 <p>Hello ${checkvalidity.name},</p>
 
-                <p>Enter the code <b>${req.body.code}</b> in the webpage!!</p>
+                <p>Enter the code <b>${req.body.code}</b> to reset the password</p>
 
                 <p>Regards,</p>
-                <p>Password reset team</p>
+                <p>Kavin surya</p>
                 </div>`
             }
             console.log(mailOptions);
@@ -144,7 +145,7 @@ app.post('/sendMail', async (req, res) => {
 
 
 
-
+//APi to validate the reset code
 app.post('/code', async (req, res) => {
     let connection = await client.connect(url);
     let db = connection.db("url_shortner");
@@ -161,6 +162,8 @@ app.post('/code', async (req, res) => {
     await connection.close();
 })
 
+
+//Api to reset the password for an user
 app.put('/resetpassword', async (req, res) => {
     let connection = await client.connect(url);
     let db = connection.db("url_shortner");
@@ -190,30 +193,28 @@ app.put('/resetpassword', async (req, res) => {
 })
 
 
-
+//Api to shorten the url 
 app.post('/urlShortner', (req, res) => {
-    console.log(req.body.url)
     shortUrl.short(`${req.body.url}`, function (err, url) {
-        // console.log(url);
         urlshortner.push(url);
         res.json(urlshortner)
     });
 
 })
 
-
+//APi to get the url 
 app.get('/getUrl', (req, res) => {
     res.json(urlshortner);
 })
 
 
-
+//APi to send login link to user via mail
 app.post('/sendLink', async (req, res) => {
     try {
         let connection = await client.connect(url);
         let db = connection.db("url_shortner");
         let checkvalidity = await db.collection("users").findOne({ email: req.body.email });
-        console.log(checkvalidity);
+      
         if (checkvalidity) {
             let transporter = nodemailer.createTransport({
                 service: 'gmail',
@@ -224,19 +225,19 @@ app.post('/sendLink', async (req, res) => {
             });
 
             let mailOptions = {
-                from: "kavinguvi@gmail.com",
+                from: "Kavin surya <kavinguvi@gmail.com>",
                 to: req.body.email,
-                subject: "Password reset",
+                subject: "Login link ",
                 html: `<div>
                 <p>Hello ${checkvalidity.name},</p>
 
-                <p>Enter the code <b>http://127.0.0.1:5500/assets/login/login.html</b> in the webpage!!</p>
+                <p>Click the link to login:<b>http://127.0.0.1:5500/assets/login/login.html</b> </p>
 
                 <p>Regards,</p>
-                <p>Password reset team</p>
+                <p>Kavin surya</p>
                 </div>`
             }
-            console.log(mailOptions);
+
 
             transporter.sendMail(mailOptions, (err, info) => {
                 if (err) {

@@ -6,7 +6,7 @@ async function shortner() {
 
     }
 
-    console.log(url);
+   
     try {
         await fetch('http://localhost:3000/urlShortner', {
             method: "POST",
@@ -26,7 +26,7 @@ async function urlData() {
     try {
         let data = await fetch("http://localhost:3000/getUrl");
         urldata = await data.json();
-        console.log(urldata);
+     
         let div = document.getElementById('url');
         let a = document.createElement('a');
         let h3 =document.createElement('h3')

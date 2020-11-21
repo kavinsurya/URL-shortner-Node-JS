@@ -1,7 +1,7 @@
 .container{
     margin:  50px auto;
     background-color: aquamarine;
-  
+    min-height: 400px;
 }
 
 
